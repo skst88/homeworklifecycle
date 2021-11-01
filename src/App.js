@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Counter from './components/Counter';
+import Ingredients from './components/Ingredients';
+import Receipts from './components/Receipts';
+import { useState } from 'react'
+import Email from './components/Email';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import AddContact from './components/AddContact';
+import ContactContextProvider from './Context/ContactContext'
+import ContactList from './components/ContactList';
+
 
 function App() {
+  const [meal, setMeal] = useState("")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ContactContextProvider>
+        <Counter />
+        <Receipts meal={meal} setMeal={setMeal} />
+        <Ingredients meal={meal} setMeal={setMeal} />
+        <Email />
+        <AddContact />
+        <ContactList />
+      </ContactContextProvider>
+    </>
+
   );
 }
 
